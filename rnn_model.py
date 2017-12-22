@@ -55,6 +55,8 @@ class RNN_model:
             self.weight = tf.Variable(tf.truncated_normal(shape=[self.num_states[-1],self.n_classes]))
             self.bias = tf.Variable(tf.truncated_normal(shape=[self.n_classes]))
             self.pred = tf.matmul(self.valid_outputs,self.weight)+self.bias
+            tf.summary.histogram('weight',self.weight)
+            tf.summary.histogram('bias',self.bias)
 
         #计算loss,开始训练,加入global_step方便写入summary计步
         with tf.name_scope('train'):
